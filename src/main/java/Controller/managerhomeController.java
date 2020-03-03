@@ -1,4 +1,4 @@
-package sample.Controller;
+package Controller;
 
 public class managerhomeController {
 }

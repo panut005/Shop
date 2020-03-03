@@ -1,4 +1,4 @@
-package sample.Controller;
+package Controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,7 +18,7 @@ public class homeController {
     public void handlebuttonCashier(ActionEvent event) throws IOException {
         buttonCashier= (Button) event.getSource();
         Stage stage = (Stage) buttonCashier.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Ui/main.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/main.fxml"));
         stage.setScene(new Scene((Parent) loader.load()));
         stage.show();
 
@@ -28,7 +28,7 @@ public class homeController {
     public void handlebuttonManager(ActionEvent event) throws IOException {
         buttonManager= (Button) event.getSource();
         Stage stage = (Stage) buttonManager.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Ui/itemlist.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/itemlist.fxml"));
         stage.setScene(new Scene((Parent) loader.load()));
         stage.show();
 
