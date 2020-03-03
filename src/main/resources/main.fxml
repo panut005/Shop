@@ -13,36 +13,36 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1024.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#006664" height="140.0" layoutX="-23.0" layoutY="-1.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" width="1427.0" />
-      <TableView layoutX="903.0" layoutY="160.0" prefHeight="727.0" prefWidth="428.0">
+      <TableView fx:id="tableView" layoutX="845.0" layoutY="169.0" prefHeight="561.0" prefWidth="447.0">
          <columns>
-            <TableColumn prefWidth="257.0" text="Item" />
-            <TableColumn prefWidth="117.0" text="Price" />
-            <TableColumn prefWidth="53.0" text="Delete" />
+            <TableColumn fx:id="Item" prefWidth="199.0" text="Item" />
+            <TableColumn fx:id="Price" prefWidth="79.0" text="Price" />
+            <TableColumn fx:id="Quantity" prefWidth="79.0" text="Quantity" />
+            <TableColumn fx:id="Amount" prefWidth="89.0" text="Amount" />
          </columns>
       </TableView>
       <ImageView fitHeight="633.0" fitWidth="447.0" layoutX="75.0" layoutY="355.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@S__38412297.jpg" />
          </image></ImageView>
-      <Button layoutX="903.0" layoutY="938.0" mnemonicParsing="false" prefHeight="73.0" prefWidth="185.0" style="-fx-background-color: green;" text="Submit" textFill="WHITE">
+      <Button fx:id="Submit" layoutX="856.0" layoutY="796.0" mnemonicParsing="false" prefHeight="73.0" prefWidth="185.0" style="-fx-background-color: green;" text="Submit" textFill="WHITE">
          <font>
             <Font size="36.0" />
          </font>
       </Button>
-      <Button layoutX="1138.0" layoutY="938.0" mnemonicParsing="false" prefHeight="73.0" prefWidth="185.0" style="-fx-background-color: red;" text="Cancle" textFill="WHITE">
+      <Button fx:id="Delete" layoutX="1113.0" layoutY="794.0" mnemonicParsing="false" onAction="#deletHandle" prefHeight="73.0" prefWidth="185.0" style="-fx-background-color: red;" text="Delete" textFill="WHITE">
          <font>
             <Font size="36.0" />
          </font>
       </Button>
-      <Button layoutX="598.0" layoutY="191.0" mnemonicParsing="false" prefHeight="73.0" prefWidth="252.0" style="-fx-background-color: grey;" text="Find Member" textFill="WHITE">
+      <Button layoutX="598.0" layoutY="191.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="185.0" style="-fx-background-color: grey;" text="Find Member" textFill="WHITE">
          <font>
-            <Font size="30.0" />
+            <Font size="21.0" />
          </font>
       </Button>
-      <Button layoutX="670.0" layoutY="320.0" mnemonicParsing="false" prefHeight="178.0" prefWidth="196.0" style="-fx-background-color: grey;" text="Promotion Voucher" textFill="WHITE" wrapText="true">
+      <Button layoutX="650.0" layoutY="247.0" mnemonicParsing="false" prefHeight="99.0" prefWidth="133.0" style="-fx-background-color: grey;" text="Promotion Voucher" textFill="WHITE" wrapText="true">
          <font>
-            <Font size="28.0" />
+            <Font size="21.0" />
          </font>
       </Button>
       <Text layoutX="57.0" layoutY="280.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hello .......">
@@ -50,8 +50,19 @@
             <Font size="67.0" />
          </font>
       </Text>
-      <TextField layoutX="575.0" layoutY="951.0" />
-      <Button layoutX="750.0" layoutY="951.0" mnemonicParsing="false" text="Button" />
-      <TextField layoutX="1182.0" layoutY="896.0" promptText="total price" />
+      <TextField fx:id="search" layoutX="551.0" layoutY="802.0" promptText="ID  item" />
+      <Button fx:id="add" layoutX="717.0" layoutY="802.0" mnemonicParsing="false" onAction="#handlebuttonAdd" text="add" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#006664" height="140.0" layoutX="-23.0" layoutY="-1.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" width="1427.0" />
+      <Text fx:id="total" layoutX="987.0" layoutY="766.0" strokeType="OUTSIDE" strokeWidth="0.0" text="total price : 0.00 bath" textAlignment="RIGHT" wrappingWidth="304.455078125">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Text>
+      <Button fx:id="buttonBack" layoutX="1237.0" layoutY="933.0" mnemonicParsing="false" onAction="#handlebuttonBack" prefHeight="59.0" prefWidth="149.0" style="-fx-background-color: blue;" text="Back" textFill="WHITE">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Button>
+      <TextField fx:id="QuantityTF" alignment="CENTER_RIGHT" layoutX="551.0" layoutY="848.0" promptText="Quantity" text="1" />
    </children>
 </AnchorPane>

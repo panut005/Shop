@@ -60,6 +60,10 @@ public class itemlistController {
         }
         return temp;
     }
+    void showTable(){
+        tableView.setItems(addData(productDataBase.getAllProductS()));
+    }
+
     @FXML
     public void handleAddbtn(ActionEvent event) throws Exception {
         if((textID.getText().isEmpty()||textName.getText().isEmpty()||textAmount.getText().isEmpty()||textPrice.getText().isEmpty())||srcImage.isEmpty()){
@@ -124,9 +128,7 @@ public class itemlistController {
             alert.showAndWait();
         }
     }
-    void showTable(){
-        tableView.setItems(addData(productDataBase.getAllProductS()));
-    }
+
 
     public void deletHandle(ActionEvent event)throws Exception{
         Product selectedItem = tableView.getSelectionModel().getSelectedItem();
