@@ -1,24 +1,45 @@
 package Controller;
 
 import ConnectDatabase.ProductDataBase;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingNode;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.Product;
+
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import com.github.sarxos.webcam.Webcam;
+import com.github.sarxos.webcam.WebcamPanel;
+import com.google.zxing.BinaryBitmap;
+import com.google.zxing.LuminanceSource;
+import com.google.zxing.MultiFormatReader;
+import com.google.zxing.Result;
+import com.google.zxing.NotFoundException;
+import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
+import com.google.zxing.common.HybridBinarizer;
+
+import javax.swing.*;
+
 
 public class itemlistController {
     @FXML
@@ -33,10 +54,18 @@ public class itemlistController {
     @FXML
     private Label eID,eName,eAmount,ePrice;
     @FXML private ImageView upload;
+
+    @FXML
+    private AnchorPane webcamPane;
+    private Webcam webCam = null;
+
     private File file;
     private String srcImage="";
     private Button buttonBack;
+    final SwingNode swingNode = new SwingNode();
 
+
+    LuminanceSource source =null;
     @FXML
     public void initialize(){
         ID.setCellValueFactory(new PropertyValueFactory<Product,String>("id"));
@@ -51,7 +80,54 @@ public class itemlistController {
         name.setCellFactory(TextFieldTableCell.forTableColumn());
         quantity.setCellFactory(TextFieldTableCell.forTableColumn());
         price.setCellFactory(TextFieldTableCell.forTableColumn());
+        webcamPane =new AnchorPane();
+        Webcam webcam = Webcam.getDefault();   //Generate Webcam Object
+        webcam.setViewSize(new Dimension(640,480));
+        WebcamPanel webcamPanel = new WebcamPanel(webcam,true);
+        webcamPanel.setMirrored(false);
+//        SwingUtilities.invokeLater(() -> {
+//            if(webcamPanel != null) {
+//                swingNode.setContent(webcamPanel);
+//            }
+//        });
+//        Platform.runLater(() -> {
+//            webcamPane.getChildren().clear();
+//            webcamPane.getChildren().add(swingNode);
+//        });
+        JFrame jFrame = new JFrame();
+        jFrame.add(webcamPanel);
+        jFrame.pack();
+        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        jFrame.setLocationRelativeTo(null);
+        jFrame.setVisible(true);
+
+        do {
+            try {
+                BufferedImage image = webcam.getImage();
+                source = new BufferedImageLuminanceSource(image);
+                BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
+                Result result = new MultiFormatReader().decode(bitmap);
+                if(result.getText() != null) {
+                    System.out.println(result.getText());
+                    webcam.close();
+                    break;
+                }
+
+            }catch (NotFoundException e ) {
+                //pass
+            }
+
+        } while(true);
+
     }
+
+
+
+
+
+
+
+
 
     public ObservableList<Product> addData(ArrayList<Product> data){
         ObservableList<Product> temp= FXCollections.observableArrayList();

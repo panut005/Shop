@@ -4,7 +4,6 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
@@ -38,6 +37,6 @@
       <Button fx:id="addBtn" layoutX="1039.0" layoutY="567.0" mnemonicParsing="false" onAction="#handleAddbtn" text="Add" />
       <Button fx:id="deletBtn" layoutX="1077.0" layoutY="567.0" mnemonicParsing="false" onAction="#deletHandle" text="Detete" />
       <Button fx:id="loadPictureBtn" layoutX="1039.0" layoutY="542.0" mnemonicParsing="false" onAction="#loadPicture" text="Load Picture" />
-      <ImageView fx:id="upload" fitHeight="192.0" fitWidth="218.0" layoutX="1039.0" layoutY="218.0" pickOnBounds="true" preserveRatio="true" />
+      <AnchorPane fx:id="webcam" layoutX="1017.0" layoutY="223.0" prefHeight="200.0" prefWidth="200.0" />
    </children>
 </AnchorPane>
